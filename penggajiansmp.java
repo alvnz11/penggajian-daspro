@@ -4,7 +4,7 @@ public class penggajiansmp {
 
         Scanner input = new Scanner(System.in);
         int  tunjangan = 10000, jamMengajar, statusGuru; // input
-        double gajiGuru, gajiAkhir;
+        double gajiGuru, gajiAkhir,Jamlembur, gajiLembur;
         String namaGuru;
 
         System.out.println("======Sistem Penggajian Guru======");
@@ -32,11 +32,16 @@ public class penggajiansmp {
                 System.out.println(String.format("Gaji anda adalah: Rp. %s (sudah termasuk tunjangan)", gajiAkhir));
             break;
             case 2 :
-                System.out.println("Masukkan gaji guru perjam : "); // proses
+                System.out.print("Masukkan gaji guru perjam : "); // proses
                 gajiGuru = input.nextInt();
-                System.out.println("Masukkan jam guru mengajar : ");
+                System.out.print("Masukkan jam guru mengajar : ");
                 jamMengajar = input.nextInt();
-                gajiAkhir = gajiGuru * jamMengajar;
+                System.out.print ("Masukkan jam mengajar lembur : ");
+                Jamlembur = input.nextInt();
+                System.out.print("Masukkan gaji Lembur per jam : ");
+                gajiLembur = input.nextInt();
+
+                gajiAkhir = (gajiGuru * jamMengajar) + (Jamlembur * gajiLembur) ;
                 input.close();
 
                 System.out.println();
