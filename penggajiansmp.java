@@ -5,7 +5,7 @@ public class penggajiansmp {
         Scanner input = new Scanner(System.in);
         int  tunjangan = 10000, jamMengajar,Jamlembur, pilihanMenu; // input
         double gajiGuru, gajiAkhir, gajiLembur, totalLembur;
-        String namaGuru, pilihanGuru;
+        String namaGuru, pilihanGuru, menuLembur;
 
         // Pilihan Menu
         System.out.println("======================================");
@@ -53,20 +53,35 @@ public class penggajiansmp {
                     gajiGuru = input.nextInt();
                     System.out.print("Masukkan jam guru mengajar : ");
                     jamMengajar = input.nextInt();
-                    System.out.print("Masukkan gaji lembur per jam : ");
-                    gajiLembur = input.nextInt();
-                    System.out.print ("Masukkan jam mengajar lembur : ");
-                    Jamlembur = input.nextInt();
-                    totalLembur = Jamlembur * gajiLembur;
-                    gajiAkhir = (gajiGuru * jamMengajar) + totalLembur ;
-                    input.close();
+                    System.out.println("Apakah anda ingin menambah Gaji (Ya/tidak)");
+                    menuLembur = input.next();
 
-                    System.out.println();
-                    System.out.println("======Slip Gaji Guru Honorer======");
-                    System.out.println();
-                    System.out.println("Nama Guru : " + namaGuru);
-                    System.out.println("Gaji lembur = " + totalLembur);
-                    System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
+                    if (menuLembur.equalsIgnoreCase("ya")) {
+                        System.out.print("Masukkan gaji lembur per jam : ");
+                        gajiLembur = input.nextInt();
+                        System.out.print ("Masukkan jam mengajar lembur : ");
+                        Jamlembur = input.nextInt();
+                        totalLembur = Jamlembur * gajiLembur;
+                        gajiAkhir = (gajiGuru * jamMengajar) + totalLembur ;
+                        input.close();
+
+                        System.out.println();
+                        System.out.println("======Slip Gaji Guru Honorer======");
+                        System.out.println();
+                        System.out.println("Nama Guru : " + namaGuru);
+                        System.out.println("Gaji lembur = " + totalLembur);
+                        System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
+                    } else if (menuLembur.equalsIgnoreCase("tidak")) {
+                        gajiAkhir = gajiGuru * jamMengajar;
+
+                        System.out.println();
+                        System.out.println("======Slip Gaji Guru Honorer======");
+                        System.out.println();
+                        System.out.println("Nama Guru : " + namaGuru);
+                        System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
+                    } else {
+                        System.out.println("Input yang anda masukkan salah!");
+                    }
                 } else {
                     System.out.println("Status Guru yang Anda Masukkan Salah!");
                 }
