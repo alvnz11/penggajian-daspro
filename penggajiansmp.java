@@ -3,9 +3,9 @@ public class penggajiansmp {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        int  tunjangan = 10000, jamMengajar,Jamlembur, pilihanMenu; // input
+        int  tunjangan = 10000, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; // input
         double gajiGuru, gajiAkhir, gajiLembur, totalLembur;
-        String namaGuru, pilihanGuru;
+        String namaGuru, pilihanGuru,posisiStaff;
 
         // Pilihan Menu
         System.out.println("======================================");
@@ -75,7 +75,22 @@ public class penggajiansmp {
 
             // Penggajian Staff
             case 2 : 
-                System.out.println();
+                System.out.print("Masukkan nama staff : ");
+                namaGuru = input.next();
+                System.out.print("Masukkan posisi staff : ");
+                posisiStaff = input.next();
+                System.out.print("Masukkan hari masuk staff : ");
+                hariMasuk = input.nextInt();
+                System.out.print("Masukkan gaji staff : ");
+                gajiGuru = input.nextInt();
+                gajiAkhir = (gajiGuru * hariMasuk);
+
+                    System.out.println();
+                    System.out.println("======Slip Gaji Staff smp Tadika Mesra======");
+                    System.out.println();
+                    System.out.println("Nama Staff : " + namaGuru);
+                    System.out.println("Posisi Staff : " + posisiStaff);
+                    System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
             break;
             default : 
                 System.out.println("Menu yang anda masukkan salah! ");
