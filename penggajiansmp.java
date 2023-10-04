@@ -5,7 +5,8 @@ public class penggajiansmp {
         Scanner input = new Scanner(System.in);
         int  tunjangan = 10000, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; // input
         double gajiGuru, gajiAkhir, gajiLembur, totalLembur;
-        String namaGuru, pilihanGuru, menuLembur, posisiStaff;
+        String namaGuru, pilihanGuru, menuLembur, posisiStaff, jabatan;
+        String pilihanJabatan;
 
 
         // Pilihan Menu
@@ -33,20 +34,51 @@ public class penggajiansmp {
                 pilihanGuru = input.next();
 
                 if (pilihanGuru.equalsIgnoreCase("1")) {
-                    System.out.print("Masukkan nama guru : ");
-                    namaGuru = input.next();
-                    System.out.print("Masukkan gaji guru perjam : "); // proses
-                    gajiGuru = input.nextInt();
-                    System.out.print("Masukkan jam guru mengajar : ");
-                    jamMengajar = input.nextInt();
-                    gajiAkhir = gajiGuru * jamMengajar + tunjangan;
+                    System.out.println("Masukkan Pilihan Jabatan");
+                    System.out.println("1. Kepala Sekolah");
+                    System.out.println("2. Guru Pengajar");
+                    System.out.print("Masukkan Pilihan Anda : "); 
+                    pilihanJabatan = input.next();
 
-                    System.out.println();
-                    System.out.println("======Slip Gaji Guru PNS======");
-                    System.out.println();
-                    System.out.println("Nama Guru : " + namaGuru);
-                    System.out.println("Tunjangan = " + tunjangan);
-                    System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
+                    if (pilihanJabatan.equalsIgnoreCase("1")) {              
+                        System.out.print("Masukkan Nama Guru : ");
+                        namaGuru = input.next();
+                        System.out.print("Masukkan Gaji Guru : ");
+                        gajiGuru = input.nextDouble();
+                        
+                        jabatan = "Kepala Sekolah";
+                        gajiAkhir = gajiGuru + tunjangan;
+
+                        System.out.println();
+                        System.out.println("======Slip Gaji Guru Kepala Sekolah======");
+                        System.out.println();
+                        System.out.println("Nama Guru : " + namaGuru);
+                        System.out.println("Tunjangan = " + tunjangan);
+                        System.out.println("Jabatan : " + jabatan);
+                        System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
+
+                    } else if (pilihanJabatan.equalsIgnoreCase("2")) {
+                        System.out.print("Masukkan nama guru : ");
+                        namaGuru = input.next();
+                        System.out.print("Masukkan gaji guru perjam : "); // proses
+                        gajiGuru = input.nextInt();
+                        System.out.print("Masukkan jam guru mengajar : ");
+                        jamMengajar = input.nextInt();
+
+                        jabatan = "Guru Pengajar";
+                        gajiAkhir = gajiGuru * jamMengajar + tunjangan;
+
+                        System.out.println();
+                        System.out.println("======Slip Gaji Guru PNS======");
+                        System.out.println();
+                        System.out.println("Nama Guru : " + namaGuru);
+                        System.out.println("Jabatan : " + jabatan);
+                        System.out.println("Tunjangan = " + tunjangan);
+                        System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
+                    }else {
+                        System.out.println("Input Yang Anda Masukkan Salah");
+                    }
+
                 } else if (pilihanGuru.equalsIgnoreCase("2")) {
                     System.out.print("Masukkan nama guru : ");
                     namaGuru = input.next();
