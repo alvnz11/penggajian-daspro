@@ -3,9 +3,32 @@ public class penggajiansmp {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        int  tunjangan = 10000, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; // input
+        int  tunjangan = 10000, percobaan = 5, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; // input
         double gaji, gajiAkhir, gajiLembur, totalLembur;
-        String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan;
+        String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
+
+        // System login
+        do {
+            System.out.println("Masukkan Username : ");
+            username = input.next();
+            System.out.println("Masukkan Password");
+            password = input.next();
+
+            if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
+                System.out.println("Anda berhasil masuk");
+                break;
+            } else {
+                percobaan--;
+                System.out.println("Username dan password yang anda masukkan salah!");
+                System.out.println("Sisa Percobaan masuk : " + percobaan);
+            }
+            
+        } while (percobaan > 0);
+        
+        if (percobaan == 0) {
+            System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
+        }
+
 
         // Pilihan Menu
         System.out.println("======================================");
