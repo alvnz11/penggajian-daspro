@@ -3,15 +3,17 @@ public class penggajiansmp {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        int  tunjangan = 10000, percobaan = 5, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; // input
+
+        // input
+        int  tunjangan = 10000, percobaan = 5, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; 
         double gaji, gajiAkhir, gajiLembur, totalLembur;
         String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
 
         // System login
         do {
-            System.out.println("Masukkan Username : ");
+            System.out.print("Masukkan Username : ");
             username = input.next();
-            System.out.println("Masukkan Password");
+            System.out.print("Masukkan Password : ");
             password = input.next();
 
             if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
@@ -31,6 +33,7 @@ public class penggajiansmp {
 
 
         // Pilihan Menu
+        System.out.println();
         System.out.println("======================================");
         System.out.println("||                                  ||");
         System.out.println("||      SISTEM PENGGAJIAN GURU      ||");
