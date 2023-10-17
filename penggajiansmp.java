@@ -1,13 +1,38 @@
 import java.util.Scanner;
+
 public class penggajiansmp {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        int  tunjangan = 10000, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; // input
+
+        // input
+        int  tunjangan = 10000, percobaan = 5, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; 
         double gaji, gajiAkhir, gajiLembur, totalLembur;
-        String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan;
+        String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
+
+        //Sistem login
+        do {
+            System.out.print("Masukkan Username : ");
+            username = input.next();
+            System.out.print("Masukkan Password : ");
+            password = input.next();
+
+            if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
+                System.out.println("Anda berhasil masuk");
+                break;
+            } else {
+                percobaan--;
+                System.out.println("Username dan password yang anda masukkan salah!");
+                System.out.println("Sisa Percobaan masuk : " + percobaan);
+            }            
+        } while (percobaan > 0); 
+        
+        if (percobaan == 0) {
+            System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
+        }
 
         // Pilihan Menu
+        System.out.println();
         System.out.println("======================================");
         System.out.println("||                                  ||");
         System.out.println("||      SISTEM PENGGAJIAN GURU      ||");
@@ -23,7 +48,7 @@ public class penggajiansmp {
         pilihanMenu = input.nextInt();
         
         switch (pilihanMenu) {
-            //Penggajian Guru
+            // Case Guru
             case 1 :
                 System.out.println("Anda berada di dalam menu guru, Silahkan pilih status guru");
                 System.out.println("1. Guru PNS");
@@ -31,6 +56,7 @@ public class penggajiansmp {
                 System.out.print("Masukkan status guru : "); 
                 pilihanGuru = input.next();
 
+                // Pilihan Guru PNS
                 if (pilihanGuru.equalsIgnoreCase("1")) {
                     System.out.println("Masukkan Pilihan Jabatan");
                     System.out.println("1. Kepala Sekolah");
@@ -38,6 +64,7 @@ public class penggajiansmp {
                     System.out.print("Masukkan Pilihan Anda : "); 
                     pilihanJabatan = input.next();
 
+                    // Menu Jabatan Kepala Sekolah (Tanpa jam Mengajar)
                     if (pilihanJabatan.equalsIgnoreCase("1")) {              
                         System.out.print("Masukkan Nama Guru : ");
                         nama = input.next();
@@ -55,10 +82,11 @@ public class penggajiansmp {
                         System.out.println("Jabatan : " + jabatan);
                         System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
 
+                    // Menu Jabatan Guru Mengajar 
                     } else if (pilihanJabatan.equalsIgnoreCase("2")) {
                         System.out.print("Masukkan nama guru : ");
                         nama = input.next();
-                        System.out.print("Masukkan gaji guru perjam : "); // proses
+                        System.out.print("Masukkan gaji guru perjam : "); 
                         gaji = input.nextInt();
                         System.out.print("Masukkan jam guru mengajar : ");
                         jamMengajar = input.nextInt();
@@ -73,25 +101,30 @@ public class penggajiansmp {
                         System.out.println("Jabatan : " + jabatan);
                         System.out.println("Tunjangan = " + tunjangan);
                         System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
+
+                    // Inputan Salah
                     }else {
                         System.out.println("Input Yang Anda Masukkan Salah");
-                    }
+                    }    
 
+                // Pilihan Guru Honorer
                 } else if (pilihanGuru.equalsIgnoreCase("2")) {
                     System.out.print("Masukkan nama guru : ");
                     nama = input.next();
-                    System.out.print("Masukkan gaji guru perjam : "); // proses
+                    System.out.print("Masukkan gaji guru perjam : "); 
                     gaji = input.nextInt();
                     System.out.print("Masukkan jam guru mengajar : ");
                     jamMengajar = input.nextInt();
-                    System.out.println("Apakah anda ingin menambah Gaji (Ya/tidak)");
+                    
+                    //Menu Lembur
+                    System.out.println("Apakah anda ingin menambah Gaji (y/t)");
                     menuLembur = input.next();
-
-                    if (menuLembur.equalsIgnoreCase("ya")) {
+                    if (menuLembur.equalsIgnoreCase("y")) {
                         System.out.print("Masukkan gaji lembur per jam : ");
                         gajiLembur = input.nextInt();
                         System.out.print ("Masukkan jam mengajar lembur : ");
                         Jamlembur = input.nextInt();
+
                         totalLembur = Jamlembur * gajiLembur;
                         gajiAkhir = (gaji * jamMengajar) + totalLembur ;
                         input.close();
@@ -102,7 +135,8 @@ public class penggajiansmp {
                         System.out.println("Nama Guru : " + nama);
                         System.out.println("Gaji lembur = " + totalLembur);
                         System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
-                    } else if (menuLembur.equalsIgnoreCase("tidak")) {
+
+                    } else if (menuLembur.equalsIgnoreCase("t")) {
                         gajiAkhir = gaji * jamMengajar;
 
                         System.out.println();
@@ -113,13 +147,15 @@ public class penggajiansmp {
                     } else {
                         System.out.println("Input yang anda masukkan salah!");
                     }
+
+                // Inputan Status Guru Salah   
                 } else {
                     System.out.println("Status Guru yang Anda Masukkan Salah!");
                 }
                 break;
 
 
-            // Penggajian Staff
+            // Case Staff
             case 2 : 
                 System.out.print("Masukkan nama staff : ");
                 nama = input.next();
