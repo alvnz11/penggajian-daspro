@@ -4,29 +4,15 @@ public class penggajiansmp {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-<<<<<<< HEAD
-
-        // input
-        int  tunjangan = 10000, percobaan = 5, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; 
-        double gaji, gajiAkhir, gajiLembur, totalLembur;
-        String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
-
-        //Sistem login
-        do {
-            System.out.print("Masukkan Username : ");
-            username = input.next();
-            System.out.print("Masukkan Password : ");
-=======
         int  tunjangan = 10000, percobaan = 5, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; // input
         double gaji, gajiAkhir, gajiLembur, totalLembur;
         String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
 
         // System login
         do {
-            System.out.println("Masukkan Username : ");
+            System.out.print("Masukkan Username : ");
             username = input.next();
             System.out.println("Masukkan Password");
->>>>>>> 0dc5c6c2570d338313f1442a127f6551a45fa1a4
             password = input.next();
 
             if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
@@ -36,22 +22,12 @@ public class penggajiansmp {
                 percobaan--;
                 System.out.println("Username dan password yang anda masukkan salah!");
                 System.out.println("Sisa Percobaan masuk : " + percobaan);
-<<<<<<< HEAD
             }            
         } while (percobaan > 0); 
-=======
-            }
-            
-        } while (percobaan > 0);
->>>>>>> 0dc5c6c2570d338313f1442a127f6551a45fa1a4
         
         if (percobaan == 0) {
             System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
         }
-<<<<<<< HEAD
-=======
-
->>>>>>> 0dc5c6c2570d338313f1442a127f6551a45fa1a4
 
         // Pilihan Menu
         System.out.println();
