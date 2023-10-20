@@ -4,7 +4,8 @@ public class penggajiansmp {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        int  tunjangan = 10000, percobaan = 5, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; // input
+        // input
+        int  tunjangan = 10000, percobaan = 5, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; 
         double gaji, gajiAkhir, gajiLembur, totalLembur;
         String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
 
@@ -12,7 +13,7 @@ public class penggajiansmp {
         do {
             System.out.print("Masukkan Username : ");
             username = input.next();
-            System.out.println("Masukkan Password");
+            System.out.print("Masukkan Password : ");
             password = input.next();
 
             if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
@@ -115,7 +116,7 @@ public class penggajiansmp {
                     jamMengajar = input.nextInt();
                     
                     //Menu Lembur
-                    System.out.println("Apakah anda ingin menambah Gaji (y/t)");
+                    System.out.println("Apakah anda ingin menambah Gaji Lembur (y/t)");
                     menuLembur = input.next();
                     if (menuLembur.equalsIgnoreCase("y")) {
                         System.out.print("Masukkan gaji lembur per jam : ");
