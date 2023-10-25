@@ -4,12 +4,12 @@ public class penggajiansmp {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        // input
+        // Variabel
         int  tunjangan = 10000, percobaan = 5, jamMengajar,Jamlembur, pilihanMenu, hariMasuk; 
         double gaji, gajiAkhir, gajiLembur, totalLembur;
         String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
 
-        // System login
+        // Sistem login
         do {
             System.out.print("Masukkan Username : ");
             username = input.next();
@@ -29,6 +29,13 @@ public class penggajiansmp {
         if (percobaan == 0) {
             System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
         }
+
+        int jml;
+        System.out.print("Masukkan Jumlah Penggajian : ");
+        jml = input.nextInt();
+        int[] jmlGuru = new int[jml];
+
+        for (int i = 0; i < jml; i++) {
 
         // Pilihan Menu
         System.out.println();
@@ -175,6 +182,8 @@ public class penggajiansmp {
             break;
             default : 
                 System.out.println("Menu yang anda masukkan salah! ");
+        }
+        
         }
 
     }
