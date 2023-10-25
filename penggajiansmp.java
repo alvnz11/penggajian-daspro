@@ -109,7 +109,8 @@ public class penggajiansmp {
                     jamMengajar = input.nextInt();
                     System.out.println("Apakah anda ingin menambah Gaji (Ya/tidak)");
                     menuLembur = input.next();
-
+                
+                    // LEMBUR 
                     if (menuLembur.equalsIgnoreCase("ya")) {
                         System.out.print("Masukkan gaji lembur per jam : ");
                         gajiLembur = input.nextInt();
@@ -142,7 +143,7 @@ public class penggajiansmp {
                 break;
 
 
-            // Penggajian Staff
+            // Pemilihan Penggajian Staff
             case 2 : 
                 System.out.print("Masukkan nama staff : ");
                 nama = input.next();
