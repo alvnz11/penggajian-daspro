@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class penggajiansmp {
@@ -6,30 +7,30 @@ public class penggajiansmp {
         Scanner input = new Scanner(System.in);
 
         // Variabel
-        int  tunjangan = 1000000, percobaan = 5, jamMengajar, Jamlembur, hariMasuk, bulan = 12, pilihanMenu; 
-        double gaji, gajiLembur, gajiPerHariStaff = 50000, gajiBulananStaff;
+        int  tunjangan = 1000000, percobaan = 5, jamMengajar, Jamlembur, bulan, pilihanMenu; 
+        double gaji, gajiLembur, gajiPerHariStaff = 50000;
         String username, password;
         
         //Sistem login
-        do {
-            System.out.print("Masukkan Username : ");
-            username = input.next();
-            System.out.print("Masukkan Password : ");
-            password = input.next();
+        // do {
+        //     System.out.print("Masukkan Username : ");
+        //     username = input.next();
+        //     System.out.print("Masukkan Password : ");
+        //     password = input.next();
 
-            if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
-                System.out.println("Anda berhasil masuk");
-                break;
-            } else {
-                percobaan--;
-                System.out.println("Username dan password yang anda masukkan salah!");
-                System.out.println("Sisa Percobaan masuk : " + percobaan);
-            }            
-        } while (percobaan > 0); 
+        //     if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
+        //         System.out.println("Anda berhasil masuk");
+        //         break;
+        //     } else {
+        //         percobaan--;
+        //         System.out.println("Username dan password yang anda masukkan salah!");
+        //         System.out.println("Sisa Percobaan masuk : " + percobaan);
+        //     }            
+        // } while (percobaan > 0); 
         
-        if (percobaan == 0) {
-            System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
-        }
+        // if (percobaan == 0) {
+        //     System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
+        // }
 
         
         // Pilihan Menu
@@ -179,36 +180,94 @@ public class penggajiansmp {
                 System.out.print("Masukkan Jumlah Penggajian Staff : ");
                 jmlStaff = input.nextInt();
 
+                int[] hariMasuk = new int[jmlStaff];
                 String[] posisiStaff = new String[jmlStaff];
                 String[] namaStaff = new String[jmlStaff];
-                double[][] gajiStaff = new double[namaStaff.length][bulan];
-
-                for (int i = 0; i < jmlStaff; i++) {
+                String[] menuStaff = new String[jmlStaff];
+                double[] gajiBulananStaff = new double[jmlStaff];
+                double[][] gajiStaff = new double[12][namaStaff.length];
                 
+                for (int i = 0; i < jmlStaff; i++) {
                     System.out.print("Masukkan nama staff : ");
                     namaStaff[i] = input.next();
+                    System.out.println("POSISI STAFF SMP");
+                    System.out.println("1. Security");
+                    System.out.println("2. Office Boy");
+                    System.out.println("3. Petugas Perpustakaan");
+                    System.out.println("4. Tata Usaha");
+                    System.out.print("Masukkan pilihan posisi staff : ");
+                    menuStaff[i] = input.next();
                     System.out.print("Masukkan hari masuk staff : ");
-                    hariMasuk = input.nextInt();
+                    hariMasuk[i] = input.nextInt();
+                    System.out.print("Masukkan bulan : ");
+                    bulan = input.nextInt();
                     
-                    gajiBulananStaff = hariMasuk * gajiPerHariStaff;
-                    gajiStaff[namaStaff.length][bulan] = gajiBulananStaff;
+                
+                    gajiBulananStaff[i] = hariMasuk[i] * gajiPerHariStaff;
+                    
+                    if (menuStaff[i].equalsIgnoreCase("1")) {
+                        posisiStaff[i] = "Security";
+                        
+                        System.out.println();
+                        System.out.println("======Slip Gaji Staff SMP======");
+                        System.out.println();
+                        System.out.println("Nama Staff : " + namaStaff[i]);
+                        System.out.println("Posisi Staff : " + posisiStaff[i]);
+                        System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiBulananStaff[i]));
 
-                        for (double[] pp : gajiStaff) { 
-                            System.out.println("Gaji staff : " + gajiStaff.length);
-                        }
-                    // System.out.println();
-                    // System.out.println("======Slip Gaji Staff SMP======");
-                    // System.out.println();
-                    // System.out.println("Nama Staff : " + nama[i]);
-                    // System.out.println("Posisi Staff : " + posisiStaff[i]);
-                    // System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir[i]));
+                        gajiStaff[bulan-1][i] = gajiBulananStaff[i];
+                    } else if (menuStaff[i].equalsIgnoreCase("2")) {
+                        posisiStaff[i] = "Office Boy";
+                        
+                        System.out.println();
+                        System.out.println("======Slip Gaji Staff SMP======");
+                        System.out.println();
+                        System.out.println("Nama Staff : " + namaStaff[i]);
+                        System.out.println("Posisi Staff : " + posisiStaff[i]);
+                        System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiBulananStaff[i]));
 
-                }   
-            break;
+                        gajiStaff[bulan-1][i] = gajiBulananStaff[i];
+                    } else if (menuStaff[i].equalsIgnoreCase("3")) {
+                        posisiStaff[i] = "Petugas Perpustakaan";
+                        
+                        System.out.println();
+                        System.out.println("======Slip Gaji Staff SMP======");
+                        System.out.println();
+                        System.out.println("Nama Staff : " + namaStaff[i]);
+                        System.out.println("Posisi Staff : " + posisiStaff[i]);
+                        System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiBulananStaff[i]));
 
-            default : 
+                        gajiStaff[bulan-1][i] = gajiBulananStaff[i];
+                    } else if (menuStaff[i].equalsIgnoreCase("4")) {
+                        posisiStaff[i] = "Tata Usaha";
+                        
+                        System.out.println();
+                        System.out.println("======Slip Gaji Staff SMP======");
+                        System.out.println();
+                        System.out.println("Nama Staff : " + namaStaff[i]);
+                        System.out.println("Posisi Staff : " + posisiStaff[i]);
+                        System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiBulananStaff[i]));
+
+                        gajiStaff[bulan-1][i] = gajiBulananStaff[i];
+                    } else {
+                        System.out.println("Input yang anda masukkan salah!");
+                    }
+
+
+                    
+                    // gajiBulananStaff = hariMasuk * gajiPerHariStaff;
+                    // gajiStaff[namaStaff.length][bulan] = gajiBulananStaff;
+                    
+                }
+                    for (int i = 0; i < gajiStaff.length; i++) {
+                        System.out.println();
+                        System.out.println("Gaji bulan ke-" + (i + 1) + " = " + Arrays.toString(gajiStaff[i]));
+                    }
+                    break;
+                   
+                default: 
                 System.out.println("Menu yang anda masukkan salah! ");
+            
         }
-
     }
 }
