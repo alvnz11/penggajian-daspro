@@ -12,25 +12,25 @@ public class penggajiansmp {
         String username, password;
         
         //Sistem login
-        // do {
-        //     System.out.print("Masukkan Username : ");
-        //     username = input.next();
-        //     System.out.print("Masukkan Password : ");
-        //     password = input.next();
+        do {
+            System.out.print("Masukkan Username : ");
+            username = input.next();
+            System.out.print("Masukkan Password : ");
+            password = input.next();
 
-        //     if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
-        //         System.out.println("Anda berhasil masuk");
-        //         break;
-        //     } else {
-        //         percobaan--;
-        //         System.out.println("Username dan password yang anda masukkan salah!");
-        //         System.out.println("Sisa Percobaan masuk : " + percobaan);
-        //     }            
-        // } while (percobaan > 0); 
+            if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
+                System.out.println("Anda berhasil masuk");
+                break;
+            } else {
+                percobaan--;
+                System.out.println("Username dan password yang anda masukkan salah!");
+                System.out.println("Sisa Percobaan masuk : " + percobaan);
+            }            
+        } while (percobaan > 0); 
         
-        // if (percobaan == 0) {
-        //     System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
-        // }
+        if (percobaan == 0) {
+            System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
+        }
 
         
         // Pilihan Menu
