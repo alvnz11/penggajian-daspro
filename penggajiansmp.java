@@ -10,6 +10,16 @@ public class penggajiansmp {
         double gaji, gajiAkhir, gajiLembur, totalLembur, gajiStaff = 50000;
         String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
         
+        System.out.println();
+        System.out.println("======================================");
+        System.out.println("||                                  ||");
+        System.out.println("||      SISTEM PENGGAJIAN SMP       ||");
+        System.out.println("||                                  ||");
+        System.out.println("======================================");
+        System.out.println();
+        System.out.println("Selamat Datang di Sistem Penggajian Guru SMP");
+        System.out.println();
+
         //Sistem login
         do {
             System.out.print("Masukkan Username : ");
@@ -31,16 +41,7 @@ public class penggajiansmp {
             System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
         }
 
-        
         // Pilihan Menu
-        System.out.println();
-        System.out.println("======================================");
-        System.out.println("||                                  ||");
-        System.out.println("||      SISTEM PENGGAJIAN GURU      ||");
-        System.out.println("||                                  ||");
-        System.out.println("======================================");
-        System.out.println();
-        System.out.println("Selamat Datang di Sistem Penggajian Guru SMP");
         System.out.println();
         System.out.println("Silahkan Pilih Menu Penggajian (Pilih salah satu!) ");
         System.out.println("1. Guru");
@@ -51,6 +52,13 @@ public class penggajiansmp {
         switch (pilihanMenu) {
             // Case Guru
             case 1 :
+                System.out.println();
+                System.out.println("======================================");
+                System.out.println("||                                  ||");
+                System.out.println("||          PENGGAJIAN GURU         ||");
+                System.out.println("||                                  ||");
+                System.out.println("======================================");
+                System.out.println();
                 System.out.print("Masukkan jumlah Guru : ");
                 int jmlGuru = input.nextInt();
 
@@ -175,10 +183,30 @@ public class penggajiansmp {
                         System.out.println("Status Guru yang Anda Masukkan Salah!");
                     }
                 }
+
+                System.out.println();
+                System.out.println("======================================");
+                System.out.println("||                                  ||");
+                System.out.println("||      LAPORAN PENGGAJIAN GURU     ||");
+                System.out.println("||                                  ||");
+                System.out.println("======================================");
+                System.out.println();
+
+                for (int i = 0; i < daftarGuru.length; i++) {
+                    System.out.println("Staff ke-" + (i+1) + ": " + daftarGuru[i][0] + "\t - \t" + daftarGuru[i][1] + "\t - \tTotal Gaji: Rp. " + daftarGajiGuru[i]);
+                }
+
                 break;
 
             // Case Staff
             case 2 : 
+            System.out.println();
+            System.out.println("======================================");
+            System.out.println("||                                  ||");
+            System.out.println("||          PENGGAJIAN STAFF        ||");
+            System.out.println("||                                  ||");
+            System.out.println("======================================");
+            System.out.println();
             System.out.print("Masukkan jumlah Staff : ");
             int jmlStaff = input.nextInt();
 
@@ -269,10 +297,22 @@ public class penggajiansmp {
                 }
 
             }
-                    break;
+
+            System.out.println();
+            System.out.println("======================================");
+            System.out.println("||                                  ||");
+            System.out.println("||     LAPORAN PENGGAJIAN STAFF     ||");
+            System.out.println("||                                  ||");
+            System.out.println("======================================");
+            System.out.println();
+
+            for (int i = 0; i < daftarStaff.length; i++) {
+                System.out.println("Staff ke-" + (i+1) + ": " + daftarStaff[i][0] + "\t - \t" + daftarStaff[i][1] + "\t - \tTotal Gaji: Rp. " + daftarGajiStaff[i]);
+            }
+                break;
                    
-                default: 
-                System.out.println("Menu yang anda masukkan salah! ");
+            default: 
+            System.out.println("Menu yang anda masukkan salah! ");
             
         }
     }
