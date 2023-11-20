@@ -6,9 +6,10 @@ public class penggajiansmp {
         Scanner input = new Scanner(System.in);
 
         // Variabel
-        int  tunjangan = 1000000, percobaan = 5, jamMengajar, Jamlembur, pilihanMenu, hariMasuk; 
+        int  tunjangan = 1000000, jamMengajar, Jamlembur, pilihanMenu, hariMasuk; 
         double gaji, gajiAkhir, gajiLembur, totalLembur, gajiStaff = 50000;
         String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
+        boolean login = false;
         
         System.out.println();
         System.out.println("======================================");
@@ -18,27 +19,20 @@ public class penggajiansmp {
         System.out.println("======================================");
         System.out.println();
         System.out.println("Selamat Datang di Sistem Penggajian Guru SMP");
-        System.out.println();
-
-        //Sistem login
-        do {
+        
+        while (!login) {
+            System.out.println();
             System.out.print("Masukkan Username : ");
             username = input.next();
             System.out.print("Masukkan Password : ");
             password = input.next();
 
-            if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")){
+            if (username.equalsIgnoreCase("admin") && password.equals("admin")) {
+                login = true;
                 System.out.println("Anda berhasil masuk");
-                break;
             } else {
-                percobaan--;
-                System.out.println("Username dan password yang anda masukkan salah!");
-                System.out.println("Sisa Percobaan masuk : " + percobaan);
-            }            
-        } while (percobaan > 0); 
-        
-        if (percobaan == 0) {
-            System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
+                System.out.println("Username dan password yang anda masukkan salah!, silahkan coba lagi.");
+            }
         }
 
         // Pilihan Menu
@@ -46,6 +40,7 @@ public class penggajiansmp {
         System.out.println("Silahkan Pilih Menu Penggajian (Pilih salah satu!) ");
         System.out.println("1. Guru");
         System.out.println("2. Staff");
+        System.out.println("3. Guru Eksternal");
         System.out.print("Masukkan pilihan anda : ");
         pilihanMenu = input.nextInt();
         
@@ -73,7 +68,7 @@ public class penggajiansmp {
                     System.out.print("Masukkan status guru : "); 
                     pilihanGuru = input.next();
 
-                    // Pilihan Guru PNS
+                    // Pilihan Jabatan PNS
                     if (pilihanGuru.equalsIgnoreCase("1")) {
                         System.out.println("Masukkan Pilihan Jabatan");
                         System.out.println("1. Kepala Sekolah");
@@ -291,7 +286,7 @@ public class penggajiansmp {
                         System.out.println("Posisi Staff : " + posisiStaff);
                         System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
                         break;
-                
+                        
                     default:
                         break;
                 }
@@ -311,6 +306,47 @@ public class penggajiansmp {
             }
                 break;
                    
+            
+            // Guru Eksternal
+            case 3 :
+            System.out.print("Masukkan jumlah guru Eksternal : ");
+            int jmlEks = input.nextInt();
+
+            String lapEks[][] = new String[jmlEks][3];
+
+            for (int i = 0; i < lapEks.length; i++) {
+                System.out.println("Guru Eksternal ke-" + (i+1));
+                for (int j = 0; j < lapEks[0].length; j++) {
+                    if (j == 0) {
+                        System.out.print("Nama" + ": ");
+                        lapEks[i][j] = input.next();
+                    } else if (j == 1) {
+                        System.out.print("Posisi" + ": ");
+                        lapEks[i][j] = input.next();
+                    } else {
+                        System.out.print("Gaji" + ": ");
+                        lapEks[i][j] = input.next();
+                    }
+                }
+                System.out.println();
+            }
+
+            System.out.println();
+            System.out.println("======================================");
+            System.out.println("||                                  ||");
+            System.out.println("||   LAPORAN PENGGAJIAN EKSTERNAL   ||");
+            System.out.println("||                                  ||");
+            System.out.println("======================================");
+            System.out.println();
+
+            for (int i = 0; i < lapEks.length; i++) {
+                System.out.println("Guru Eksternal ke-" + (i+1) + ": ");
+                for (String out : lapEks[i]) {
+                    System.out.print(out + " \t - \t ");
+                }
+                System.out.println();
+            }         
+
             default: 
             System.out.println("Menu yang anda masukkan salah! ");
             
