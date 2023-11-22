@@ -1,6 +1,12 @@
 import java.util.Scanner;
 
 public class penggajiansmp {
+
+    static double hitungGaji(double gaji, int jam) {
+        double akhir = gaji * jam;
+        return akhir;
+    }
+
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
@@ -107,7 +113,7 @@ public class penggajiansmp {
                             jamMengajar = input.nextInt();
 
                             jabatan = "Guru Pengajar";
-                            gajiAkhir = gaji * jamMengajar + tunjangan;
+                            gajiAkhir = hitungGaji(gaji, jamMengajar) + tunjangan;
                             daftarGuru[i][0] = nama;
                             daftarGuru[i][1] = jabatan;
                             daftarGajiGuru[i] = gajiAkhir;
@@ -145,7 +151,7 @@ public class penggajiansmp {
 
                             jabatan = "Honorer\t";
                             totalLembur = Jamlembur * gajiLembur;
-                            gajiAkhir = (gaji * jamMengajar) + totalLembur;
+                            gajiAkhir = hitungGaji(gaji, jamMengajar) + totalLembur;
                             daftarGuru[i][0] = nama;
                             daftarGuru[i][1] = jabatan;
                             daftarGajiGuru[i] = gajiAkhir;
@@ -159,7 +165,7 @@ public class penggajiansmp {
 
                         } else if (menuLembur.equalsIgnoreCase("t")) {
                             jabatan = "Honorer";
-                            gajiAkhir = gaji * jamMengajar;
+                            gajiAkhir = hitungGaji(gaji, jamMengajar);
                             daftarGuru[i][0] = nama;
                             daftarGuru[i][1] = jabatan;
                             daftarGajiGuru[i] = gajiAkhir;
@@ -226,7 +232,7 @@ public class penggajiansmp {
                     case 1:
                         posisiStaff = "Security";
 
-                        gajiAkhir = (gajiStaff * hariMasuk);
+                        gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
                         daftarStaff[i][0] = nama;
                         daftarStaff[i][1] = posisiStaff;
                         daftarGajiStaff[i] = gajiAkhir;
@@ -242,7 +248,7 @@ public class penggajiansmp {
                     case 2:
                         posisiStaff = "Office Boy";
 
-                        gajiAkhir = (gajiStaff * hariMasuk);
+                        gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
                         daftarStaff[i][0] = nama;
                         daftarStaff[i][1] = posisiStaff;
                         daftarGajiStaff[i] = gajiAkhir;
@@ -258,7 +264,7 @@ public class penggajiansmp {
                     case 3:
                         posisiStaff = "Petugas Perpustakaan";
 
-                        gajiAkhir = (gajiStaff * hariMasuk);
+                        gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
                         daftarStaff[i][0] = nama;
                         daftarStaff[i][1] = posisiStaff;
                         daftarGajiStaff[i] = gajiAkhir;
@@ -274,7 +280,7 @@ public class penggajiansmp {
                     case 4:
                         posisiStaff = "Tata Usaha";
 
-                        gajiAkhir = (gajiStaff * hariMasuk);
+                        gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
                         daftarStaff[i][0] = nama;
                         daftarStaff[i][1] = posisiStaff;
                         daftarGajiStaff[i] = gajiAkhir;
