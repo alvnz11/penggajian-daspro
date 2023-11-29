@@ -1,7 +1,8 @@
 import java.util.Scanner;
 
-public class penggajiansmp {
+public class main {
 
+    // Fungsi slip gaji Honorer
     static void slipHonorer(String nama, double totalLembur, double gajiAkhir) {
         System.out.println();
         System.out.println("======Slip Gaji Guru Honorer======");
@@ -11,6 +12,7 @@ public class penggajiansmp {
         System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));         
     }
 
+    // Fungsi slip gaji PNS
     static void slipGuru(String nama, String jabatan, int tunjangan, double gajiAkhir) {
         System.out.println();
         System.out.println("======Slip Gaji Guru PNS======");
@@ -21,6 +23,7 @@ public class penggajiansmp {
         System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
     }
 
+    // Fungsi slip gaji Staff
     static void slipStaff(String nama, String posisi, double gajiAkhir) {
         System.out.println();
         System.out.println("======Slip Gaji Staff SMP Tadika Mesra======");
@@ -30,6 +33,7 @@ public class penggajiansmp {
         System.out.println(String.format("Total gaji anda adalah : Rp. %s ", gajiAkhir));
     }
 
+    // Fungsi perhitungan gaji akhir
     static double hitungGaji(double gaji, int jam) {
         double akhir = gaji * jam;
         return akhir;
@@ -43,44 +47,47 @@ public class penggajiansmp {
         int  tunjangan = 1000000, jamMengajar, Jamlembur, pilihanMenu, hariMasuk; 
         double gaji, gajiAkhir, gajiLembur, totalLembur, gajiStaff = 50000;
         String nama, pilihanGuru, menuLembur, posisiStaff, jabatan, pilihanJabatan, username, password;
-        boolean login = false;
+        boolean login = true, exit = true;
         
         System.out.println();
         System.out.println("======================================");
         System.out.println("||                                  ||");
-        System.out.println("||      SISTEM PENGGAJIAN SMP       ||");
+        System.out.println("||       SISTEM PENGGAJIAN SMP      ||");
         System.out.println("||                                  ||");
         System.out.println("======================================");
         System.out.println();
         System.out.println("Selamat Datang di Sistem Penggajian Guru SMP");
         
-        // while (!login) {
-        //     System.out.println();
-        //     System.out.print("Masukkan Username : ");
-        //     username = input.next();
-        //     System.out.print("Masukkan Password : ");
-        //     password = input.next();
+        while (login) {
+            System.out.println();
+            System.out.print("Masukkan Username : ");
+            username = input.next();
+            System.out.print("Masukkan Password : ");
+            password = input.next();
 
-        //     if (username.equalsIgnoreCase("admin") && password.equals("admin")) {
-        //         login = true;
-        //         System.out.println("Anda berhasil masuk");
-        //     } else {
-        //         System.out.println("Username dan password yang anda masukkan salah!, silahkan coba lagi.");
-        //     }
-        // }
+            if (username.equalsIgnoreCase("admin") && password.equals("admin")) {
+                login = false;
+                System.out.println("Anda berhasil masuk");
+            } else {
+                System.out.println("Username dan password yang anda masukkan salah!, silahkan coba lagi.");
+            }
+        }
 
-        // Pilihan Menu
-        System.out.println();
-        System.out.println("Silahkan Pilih Menu Penggajian (Pilih salah satu!) ");
-        System.out.println("1. Guru");
-        System.out.println("2. Staff");
-        System.out.println("3. Guru Eksternal");
-        System.out.print("Masukkan pilihan anda : ");
-        pilihanMenu = input.nextInt();
-        
-        switch (pilihanMenu) {
-            // Case Guru
-            case 1 :
+        while (exit) {
+            // Pilihan Menu
+            System.out.println();
+            System.out.println("Silahkan Pilih Menu Penggajian (Pilih salah satu!) ");
+            System.out.println("1. Guru");
+            System.out.println("2. Staff");
+            System.out.println("3. Guru Eksternal");
+            System.out.println("0. Exit");
+            System.out.print("Masukkan pilihan anda : ");
+            pilihanMenu = input.nextInt();
+            
+            switch (pilihanMenu) {
+                // Case Guru
+                case 1 :
+                
                 System.out.println();
                 System.out.println("======================================");
                 System.out.println("||                                  ||");
@@ -175,7 +182,7 @@ public class penggajiansmp {
                             slipHonorer(nama, totalLembur, gajiAkhir);
 
                         } else if (menuLembur.equalsIgnoreCase("t")) {
-                            jabatan = "Honorer";
+                            jabatan = "Honorer\t";
                             gajiAkhir = hitungGaji(gaji, jamMengajar);
                             daftarGuru[i][0] = nama;
                             daftarGuru[i][1] = jabatan;
@@ -203,42 +210,44 @@ public class penggajiansmp {
                 System.out.println();
 
                 for (int i = 0; i < daftarGuru.length; i++) {
-                    System.out.println("Guru ke-" + (i+1) + ": " + daftarGuru[i][0] + "\t - \t" + daftarGuru[i][1] + "\t - \tTotal Gaji: Rp. " + daftarGajiGuru[i]);
+                    System.out.println("Guru ke-" + (i+1) + ": " + daftarGuru[i][0] + "\t - \t" 
+                    + daftarGuru[i][1] + "\t - \tTotal Gaji: Rp. " + daftarGajiGuru[i]);
                 }
 
                 break;
 
-            // Case Staff
-            case 2 : 
-            System.out.println();
-            System.out.println("======================================");
-            System.out.println("||                                  ||");
-            System.out.println("||          PENGGAJIAN STAFF        ||");
-            System.out.println("||                                  ||");
-            System.out.println("======================================");
-            System.out.println();
-            System.out.print("Masukkan jumlah Staff : ");
-            int jmlStaff = input.nextInt();
+                // Case Staff
+                case 2 : 
 
-            String daftarStaff[][] = new String[jmlStaff][2];
-            double daftarGajiStaff[] = new double[jmlStaff];
-
-            for (int i = 0; i < daftarStaff.length; i++) {
                 System.out.println();
-                System.out.print("Masukkan nama staff : ");
-                nama = input.next();
-                System.out.println("POSISI STAFF SMP");
-                System.out.println("1. Security");
-                System.out.println("2. Office Boy");
-                System.out.println("3. Petugas Perpustakaan");
-                System.out.println("4. Tata Usaha");
-                System.out.print("Masukkan pilihan posisi staff : ");
-                int menuStaff = input.nextInt();
-                System.out.print("Masukkan hari masuk staff : ");
-                hariMasuk = input.nextInt();;
+                System.out.println("======================================");
+                System.out.println("||                                  ||");
+                System.out.println("||          PENGGAJIAN STAFF        ||");
+                System.out.println("||                                  ||");
+                System.out.println("======================================");
+                System.out.println();
+                System.out.print("Masukkan jumlah Staff : ");
+                int jmlStaff = input.nextInt();
 
-                switch (menuStaff) {
-                    case 1:
+                String daftarStaff[][] = new String[jmlStaff][2];
+                double daftarGajiStaff[] = new double[jmlStaff];
+
+                for (int i = 0; i < daftarStaff.length; i++) {
+                    System.out.println();
+                    System.out.print("Masukkan nama staff : ");
+                    nama = input.next();
+                    System.out.println("POSISI STAFF SMP");
+                    System.out.println("1. Security");
+                    System.out.println("2. Office Boy");
+                    System.out.println("3. Petugas Perpustakaan");
+                    System.out.println("4. Tata Usaha");
+                    System.out.print("Masukkan pilihan posisi staff : ");
+                    int menuStaff = input.nextInt();
+                    System.out.print("Masukkan hari masuk staff : ");
+                    hariMasuk = input.nextInt();;
+
+                    switch (menuStaff) {
+                        case 1:
                         posisiStaff = "Security";
 
                         gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
@@ -249,7 +258,7 @@ public class penggajiansmp {
                         slipStaff(nama, posisiStaff, gajiAkhir);
                         break;
 
-                    case 2:
+                        case 2:
                         posisiStaff = "Office Boy";
 
                         gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
@@ -260,7 +269,7 @@ public class penggajiansmp {
                         slipStaff(nama, posisiStaff, gajiAkhir);
                         break;
 
-                    case 3:
+                        case 3:
                         posisiStaff = "Petugas Perpustakaan";
 
                         gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
@@ -271,7 +280,7 @@ public class penggajiansmp {
                         slipStaff(nama, posisiStaff, gajiAkhir);
                         break;
 
-                    case 4:
+                        case 4:
                         posisiStaff = "Tata Usaha";
 
                         gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
@@ -281,70 +290,84 @@ public class penggajiansmp {
 
                         slipStaff(nama, posisiStaff, gajiAkhir);
                         break;
-                        
-                    default:
+                            
+                        default:
                         break;
-                }
-
-            }
-
-            System.out.println();
-            System.out.println("======================================");
-            System.out.println("||                                  ||");
-            System.out.println("||     LAPORAN PENGGAJIAN STAFF     ||");
-            System.out.println("||                                  ||");
-            System.out.println("======================================");
-            System.out.println();
-
-            for (int i = 0; i < daftarStaff.length; i++) {
-                System.out.println("Staff ke-" + (i+1) + ": " + daftarStaff[i][0] + "\t - \t" + daftarStaff[i][1] + "\t - \tTotal Gaji: Rp. " + daftarGajiStaff[i]);
-            }
-                break;
-                   
-            
-            // Guru Eksternal
-            case 3 :
-            System.out.print("Masukkan jumlah guru Eksternal : ");
-            int jmlEks = input.nextInt();
-
-            String lapEks[][] = new String[jmlEks][3];
-
-            for (int i = 0; i < lapEks.length; i++) {
-                System.out.println("Guru Eksternal ke-" + (i+1));
-                for (int j = 0; j < lapEks[0].length; j++) {
-                    if (j == 0) {
-                        System.out.print("Nama" + ": ");
-                        lapEks[i][j] = input.next();
-                    } else if (j == 1) {
-                        System.out.print("Posisi" + ": ");
-                        lapEks[i][j] = input.next();
-                    } else {
-                        System.out.print("Gaji" + ": ");
-                        lapEks[i][j] = input.next();
                     }
+
                 }
+
                 System.out.println();
+                System.out.println("======================================");
+                System.out.println("||                                  ||");
+                System.out.println("||     LAPORAN PENGGAJIAN STAFF     ||");
+                System.out.println("||                                  ||");
+                System.out.println("======================================");
+                System.out.println();
+
+                for (int i = 0; i < daftarStaff.length; i++) {
+                    System.out.println("Staff ke-" + (i+1) + ": " + daftarStaff[i][0] + "\t - \t" + daftarStaff[i][1] + "\t - \tTotal Gaji: Rp. " + daftarGajiStaff[i]);
+                }
+                break;
+                    
+                
+                // Guru Eksternal
+                case 3 :
+
+                System.out.println();
+                System.out.println("======================================");
+                System.out.println("||                                  ||");
+                System.out.println("||     PENGGAJIAN GURU EKSTERNAL    ||");
+                System.out.println("||                                  ||");
+                System.out.println("======================================");
+                System.out.println();
+                System.out.print("Masukkan jumlah guru Eksternal : ");
+                int jmlEks = input.nextInt();
+
+                String lapEks[][] = new String[jmlEks][3];
+
+                for (int i = 0; i < lapEks.length; i++) {
+                    System.out.println("Guru Eksternal ke-" + (i+1));
+                    for (int j = 0; j < lapEks[0].length; j++) {
+                        if (j == 0) {
+                            System.out.print("Nama" + ": ");
+                            lapEks[i][j] = input.next();
+                        } else if (j == 1) {
+                            System.out.print("Posisi" + ": ");
+                            lapEks[i][j] = input.next();
+                        } else if (j == 2) {
+                            System.out.print("Gaji" + ": ");
+                            lapEks[i][j] = input.next();
+                        }
+                    }
+                    System.out.println();
+                }
+
+                System.out.println("======================================");
+                System.out.println("||                                  ||");
+                System.out.println("||   LAPORAN PENGGAJIAN EKSTERNAL   ||");
+                System.out.println("||                                  ||");
+                System.out.println("======================================");
+                System.out.println();
+
+                for (int i = 0; i < lapEks.length; i++) {
+                    System.out.println("Guru Eksternal ke-" + (i+1) + ": ");
+                    for (String out : lapEks[i]) {
+                        System.out.print(out + " \t - \t ");
+                    }
+                    System.out.println();
+                }
+                break;
+                
+                case 0:
+                System.out.println("Anda Berhasil keluar!");
+                exit = false;
+                break;
+
+                default: 
+                System.out.println("Menu yang anda masukkan SALAH! ");
+                System.out.println("Silahkan ulangi lagi!");
             }
-
-            System.out.println();
-            System.out.println("======================================");
-            System.out.println("||                                  ||");
-            System.out.println("||   LAPORAN PENGGAJIAN EKSTERNAL   ||");
-            System.out.println("||                                  ||");
-            System.out.println("======================================");
-            System.out.println();
-
-            for (int i = 0; i < lapEks.length; i++) {
-                System.out.println("Guru Eksternal ke-" + (i+1) + ": ");
-                for (String out : lapEks[i]) {
-                    System.out.print(out + " \t - \t ");
-                }
-                System.out.println();
-            }         
-
-            default: 
-            System.out.println("Menu yang anda masukkan salah! ");
-            
-        }
+        }    
     }
 }
