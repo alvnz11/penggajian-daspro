@@ -2,9 +2,10 @@ import java.util.Scanner;
 
 public class main {
 
+    private static Scanner input = new Scanner(System.in);
+
     // Fungsi login
     static void login() {
-        Scanner input = new Scanner(System.in);
         boolean login = true;
         String username, password;
         while (login) {
@@ -21,7 +22,6 @@ public class main {
                 System.out.println("Username dan password yang anda masukkan salah!, silahkan coba lagi.");
             }
         }
-        input.close();
     }
 
     // Fungsi slip gaji Honorer
@@ -74,13 +74,11 @@ public class main {
     }
 
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-
         // Variabel
         int  tunjangan = 1000000, jamMengajar, Jamlembur, hariMasuk; 
         double gaji, gajiAkhir, gajiLembur, totalLembur, gajiStaff = 50000;
         String nama, menuLembur, posisiStaff, jabatan;
-        boolean exit = true, loop1 = true, loop2 = true;
+        boolean exit = true, loop1 = true, loop2 = true, loop3 = true;
 
         String daftarGuru[][] = new String[15][2];
         double daftarGajiGuru[] = new double[15];
@@ -127,13 +125,17 @@ public class main {
                 case '1':
                     loop1 = true;
                     while (loop1) {
-                        System.out.println("Silahkan Pilih Menu Penggajian (Pilih salah satu!) ");
+                        System.out.println();
+                        System.out.println("   ## Menu Penggajian ## ");
+                        System.out.println("---------------------------");
                         System.out.println("1. Guru");
                         System.out.println("2. Staff");
                         System.out.println("3. Guru Eksternal");
                         System.out.println("0. Keluar");
+                        System.out.println("---------------------------");
                         System.out.print("Masukkan pilihan anda : ");
                         char menuGaji = input.next().charAt(0);
+                        input.nextLine();
 
                         switch (menuGaji) {
                             // Keluar dari menu Input data guru
@@ -150,28 +152,35 @@ public class main {
                                 System.out.println("||                                  ||");
                                 System.out.println("======================================");
                                 System.out.println();
-                                System.out.println("Anda berada di dalam menu guru, Silahkan pilih status guru");
-                                System.out.println("1. Guru PNS");
+                                System.out.println("Anda berada di dalam menu guru, Silahkan pilih status guru!");
+                                System.out.print("1. Guru PNS\t\t");
                                 System.out.println("2. Guru Honorer");
-                                System.out.print("Masukkan status guru : "); 
+                                System.out.println();
+                                System.out.print("Masukkan pilihan anda : "); 
                                 char statusGuru = input.next().charAt(0);
+                                System.out.println("---------------------------------------------------------------");
+                                input.nextLine();
 
                                 switch (statusGuru) {
                                     // PNS
                                     case '1':
                                         System.out.println("Masukkan Pilihan Jabatan");
-                                        System.out.println("1. Kepala Sekolah");
+                                        System.out.print("1. Kepala Sekolah\t\t");
                                         System.out.println("2. Guru Pengajar");
+                                        System.out.println();
                                         System.out.print("Masukkan Pilihan Anda : "); 
                                         char jabatanGuru = input.next().charAt(0);
+                                        System.out.println("---------------------------------------------------------------");
+                                        input.nextLine();
 
                                         switch (jabatanGuru) {
                                             // Kepala Sekolah
                                             case '1':
                                                 System.out.print("Masukkan Nama Guru : ");
-                                                nama = input.next();
+                                                nama = input.nextLine();
                                                 System.out.print("Masukkan Gaji Guru : ");
                                                 gaji = input.nextDouble();
+                                                input.nextLine();
 
                                                 jabatan = "Kepala Sekolah";
                                                 gajiAkhir = gaji + tunjangan;
@@ -186,11 +195,12 @@ public class main {
                                             // Guru Pengajar
                                             case '2':
                                                 System.out.print("Masukkan nama guru : ");
-                                                nama = input.next();
+                                                nama = input.nextLine();
                                                 System.out.print("Masukkan gaji guru perjam : "); 
                                                 gaji = input.nextInt();
                                                 System.out.print("Masukkan jam guru satu bulan : ");
                                                 jamMengajar = input.nextInt();
+                                                input.nextLine();
 
                                                 jabatan = "Guru Pengajar";
                                                 gajiAkhir = hitungGaji(gaji, jamMengajar) + tunjangan;
@@ -212,7 +222,7 @@ public class main {
                                     // Honorer
                                     case '2':
                                         System.out.print("Masukkan nama guru : ");
-                                        nama = input.next();
+                                        nama = input.nextLine();
                                         System.out.print("Masukkan gaji guru perjam : "); 
                                         gaji = input.nextInt();
                                         System.out.print("Masukkan jam guru mengajar : ");
@@ -226,6 +236,7 @@ public class main {
                                             gajiLembur = input.nextInt();
                                             System.out.print ("Masukkan jam mengajar lembur : ");
                                             Jamlembur = input.nextInt();
+                                            input.nextLine();
 
                                             jabatan = "Honorer\t";
                                             totalLembur = Jamlembur * gajiLembur;
@@ -269,16 +280,16 @@ public class main {
                                 System.out.println("======================================");
                                 System.out.println();
                                 System.out.print("Masukkan nama staff : ");
-                                nama = input.next();
+                                nama = input.nextLine();
                                 System.out.println("POSISI STAFF SMP");
-                                System.out.println("1. Security");
-                                System.out.println("2. Office Boy");
-                                System.out.println("3. Petugas Perpustakaan");
-                                System.out.println("4. Tata Usaha");
+                                System.out.println("1. Security\t\t\t3. Petugas Perpustakaan");
+                                System.out.println("2. Office Boy\t\t\t4. Tata Usaha");
+                                System.out.println();
                                 System.out.print("Masukkan pilihan posisi staff : ");
                                 int menuStaff = input.nextInt();
                                 System.out.print("Masukkan hari masuk staff : ");
                                 hariMasuk = input.nextInt();;
+                                input.nextLine();
 
                                 gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
                                 daftarStaff[s][0] = nama;
@@ -337,13 +348,13 @@ public class main {
                                     for (int j = 0; j < lapEks[0].length; j++) {
                                         if (j == 0) {
                                             System.out.print("Nama" + ": ");
-                                            lapEks[i][j] = input.next();
+                                            lapEks[i][j] = input.nextLine();
                                         } else if (j == 1) {
                                             System.out.print("Posisi" + ": ");
-                                            lapEks[i][j] = input.next();
+                                            lapEks[i][j] = input.nextLine();
                                         } else if (j == 2) {
                                             System.out.print("Gaji" + ": ");
-                                            lapEks[i][j] = input.next();
+                                            lapEks[i][j] = input.nextLine();
                                         }
                                     }
                                     System.out.println();
@@ -362,11 +373,13 @@ public class main {
                     loop2 = true;
                     while (loop2) {
                         System.out.println();
-                        System.out.println("Silahkan Pilih Menu Penggajian (Pilih salah satu!) ");
+                        System.out.println("   ## Menu Penggajian ## ");
+                        System.out.println("---------------------------");
                         System.out.println("1. Guru");
                         System.out.println("2. Staff");
                         System.out.println("3. Guru Eksternal");
                         System.out.println("0. Keluar");
+                        System.out.println("---------------------------");
                         System.out.print("Masukkan pilihan anda : ");
                         char menuLaporan = input.next().charAt(0);
 
@@ -413,6 +426,7 @@ public class main {
 
                             // Laporan Penggajian Eksternal
                             case '3':
+                                System.out.println();
                                 System.out.println("======================================");
                                 System.out.println("||                                  ||");
                                 System.out.println("||   LAPORAN PENGGAJIAN EKSTERNAL   ||");
@@ -420,12 +434,11 @@ public class main {
                                 System.out.println("======================================");
                                 System.out.println();
 
+                                System.out.println(String.format("%-15s %-15s %-15s %-15s", "Eksternal ke-", "Nama Eksternal", "Posisi", "Total Gaji"));
+                                System.out.println(String.format("%-15s %-15s %-15s %-15s", "-----------", "------------", "------------", "-------------"));
+
                                 for (int i = 0; i < lapEks.length; i++) {
-                                    System.out.println("Guru Eksternal ke-" + (i+1) + ": ");
-                                    for (String out : lapEks[i]) {
-                                        System.out.print(out + " \t - \t ");
-                                    }
-                                    System.out.println();
+                                    System.out.println(String.format("%-15s %-15s %-15s %-15s", + (i+1), lapEks[i][0], lapEks[i][1], "Rp. " + lapEks[i][2]));
                                 }
                                 break;
                         
@@ -438,7 +451,142 @@ public class main {
 
                 // Case Edit data
                 case '3':
+                    loop3 = true;
+                    while (loop3) {
+                        System.out.println();
+                        System.out.println("   ## Menu Penggajian ## ");
+                        System.out.println("---------------------------");
+                        System.out.println("1. Guru");
+                        System.out.println("2. Staff");
+                        System.out.println("3. Guru Eksternal");
+                        System.out.println("0. Keluar");
+                        System.out.println("---------------------------");
+                        System.out.print("Masukkan pilihan anda : ");
+                        char menuEdit = input.next().charAt(0);
+                        input.nextLine();
 
+                        switch (menuEdit) {
+                            // Menu keluar
+                            case '0':
+                                loop3 = false;
+                                break;
+
+                            // Edit Menu Guru
+                            case '1':
+                                System.out.println();
+                                System.out.println("======================================");
+                                System.out.println("||                                  ||");
+                                System.out.println("||            Daftar GURU           ||");
+                                System.out.println("||                                  ||");
+                                System.out.println("======================================");
+                                System.out.println();
+
+                                System.out.println(String.format("%-15s %-15s %-17s %-15s", "Guru ke-", "Nama Guru", "Jabatan Guru", "Total Gaji"));
+                                System.out.println(String.format("%-15s %-15s %-17s %-15s", "-----------", "------------", "--------------", "-------------"));
+
+                                for (int i = 0; i < daftarGuru.length; i++) {
+                                    System.out.println(String.format("%-15s %-15s %-17s %-15s", + (i+1), daftarGuru[i][0], daftarGuru[i][1], "Rp. " + daftarGajiGuru[i]));
+                                }
+                                
+                                System.out.println();
+                                System.out.print("Edit Guru ke- : ");
+                                int edit = input.nextInt();
+                                input.nextLine();
+
+                                System.out.print("Masukkan Nama Guru : ");
+                                daftarGuru[edit-1][0] = input.nextLine();
+                                System.out.print("Masukkan Jabatan Guru : ");
+                                daftarGuru[edit-1][1] = input.nextLine();
+                                System.out.print("Masukkan Total Gaji Guru : ");
+                                daftarGajiGuru[edit-1] = input.nextDouble();
+
+                                System.out.println("Apakah anda ingin lanjut mengedit? (y/t)");
+                                char lanjutEdit = input.next().charAt(0);
+                                input.nextLine();
+                                if (lanjutEdit == 't') {
+                                    loop3 = false;
+                                }
+                                break;
+
+                            // Edit Menu Staff
+                            case '2':
+                                System.out.println();
+                                System.out.println("======================================");
+                                System.out.println("||                                  ||");
+                                System.out.println("||            Daftar STAFF          ||");
+                                System.out.println("||                                  ||");
+                                System.out.println("======================================");
+                                System.out.println();
+
+                                System.out.println(String.format("%-15s %-15s %-22s %-15s", "Staff ke-", "Nama Staff", "Posisi Staff", "Total Gaji"));
+                                System.out.println(String.format("%-15s %-15s %-22s %-15s", "-----------", "------------", "------------", "-------------"));
+
+                                for (int i = 0; i < daftarStaff.length; i++) {
+                                    System.out.println(String.format("%-15s %-15s %-22s %-15s", + (i+1), daftarStaff[i][0], daftarStaff[i][1], "Rp. " + daftarGajiStaff[i]));
+                                }
+
+                                System.out.println();
+                                System.out.print("Edit Staff ke- : ");
+                                edit = input.nextInt();
+                                input.nextLine();
+
+                                System.out.print("Masukkan Nama Staff : ");
+                                daftarStaff[edit-1][0] = input.nextLine();
+                                System.out.print("Masukkan Posisi Staff : ");
+                                daftarStaff[edit-1][1] = input.nextLine();
+                                System.out.print("Masukkan Total Gaji Staff : ");
+                                daftarGajiStaff[edit-1] = input.nextDouble();
+
+                                System.out.println("Apakah anda ingin lanjut mengedit? (y/t)");
+                                lanjutEdit = input.next().charAt(0);
+                                input.nextLine();
+                                if (lanjutEdit == 't') {
+                                    loop3 = false;
+                                }
+                                break;
+
+                            // Edit Menu Eksternal
+                            case '3':
+                                System.out.println();
+                                System.out.println("======================================");
+                                System.out.println("||                                  ||");
+                                System.out.println("||          DAFTAR EKSTERNAL        ||");
+                                System.out.println("||                                  ||");
+                                System.out.println("======================================");
+                                System.out.println();
+
+                                System.out.println(String.format("%-15s %-15s %-15s %-15s", "Eksternal ke-", "Nama Eksternal", "Posisi", "Total Gaji"));
+                                System.out.println(String.format("%-15s %-15s %-15s %-15s", "-----------", "------------", "------------", "-------------"));
+
+                                for (int i = 0; i < lapEks.length; i++) {
+                                    System.out.println(String.format("%-15s %-15s %-15s %-15s", + (i+1), lapEks[i][0], lapEks[i][1], "Rp. " + lapEks[i][2]));
+                                }
+
+                                System.out.println();
+                                System.out.print("Edit Eksternal ke- : ");
+                                edit = input.nextInt();
+                                input.nextLine();
+
+                                System.out.print("Masukkan Nama Guru Eksternal : ");
+                                lapEks[edit-1][0] = input.nextLine();
+                                System.out.print("Masukkan Posisi Guru Eksternal : ");
+                                lapEks[edit-1][1] = input.nextLine();
+                                System.out.print("Masukkan Total Gaji Guru Eksternal : ");
+                                lapEks[edit-1][2] = input.nextLine();
+
+                                System.out.println("Apakah anda ingin lanjut mengedit? (y/t)");
+                                lanjutEdit = input.next().charAt(0);
+                                input.nextLine();
+                                if (lanjutEdit == 't') {
+                                    loop3 = false;
+                                }
+                                break;
+                        
+                            default:
+                                System.out.println("Menu yang anda masukkan salah! Silahkan coba lagi!");
+                                break;
+                        }
+                    }
                     break;
             
                 default:
