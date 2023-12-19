@@ -122,6 +122,8 @@ public class main {
 
         int g = 0;
         int s = 0;
+        login();
+
         while (exit) {
             System.out.println();
             System.out.println("======================================");
@@ -601,7 +603,7 @@ public class main {
                                 System.out.println("||                                  ||");
                                 System.out.println("======================================");
                                 System.out.println();
-
+                                
                                 for (int i = 0; i < lapEks.length; i++) {
                                     System.out.println("Guru Eksternal ke-" + (i+1));
                                     for (int j = 0; j < lapEks[0].length; j++) {
