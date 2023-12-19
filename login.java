@@ -26,6 +26,6 @@ public class login {
         if (percobaan == 0) {
             System.out.println("Sisa percobaan anda telah habis, ulangi dalam 1 menit!");
         }
-
+        input.close();
     }
 }

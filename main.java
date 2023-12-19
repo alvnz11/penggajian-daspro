@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class main {
+public class Main {
 
     private static Scanner input = new Scanner(System.in);
 
@@ -23,7 +23,7 @@ public class main {
         {6604700, 7023500, 7637500, 8009800}, // Golongan III
 //          A        B        C         D     
         {8207600, 8734500, 9177500, 9712800, 10285800} // Golongan IV
-//          A        B        C         D     
+//          A        B        C         D        E
     };
 
     // Fungsi login
@@ -72,6 +72,8 @@ public class main {
         System.out.printf("| %-20s | %-20s |\n", "Tunjangan", tunjangan);
         System.out.printf("| %-20s | %-20s |\n", "Total Gaji", String.format("Rp. %,.2f", gajiAkhir));
         System.out.println("+---------------------------------------------+");
+        System.out.println("NB : Tunjangan sudah termasuk Tunjangan Suami/Istri, Tunjangan Anak, Tunjangan Makan, ");
+        System.out.println("     Tunjangan Sertifikasi, Tunjangan Kinerja, dan Tunjangan Profesi/Jabatan");
         System.out.println();
     }
     
@@ -98,7 +100,7 @@ public class main {
 
     public static void main(String[] args) {
         // Variabel
-        int  tunjangan, jamMengajar, Jamlembur, hariMasuk, masaKerja; 
+        int  tunjangan, jamMengajar, Jamlembur, masaKerja; 
         double gaji, gajiAkhir, gajiLembur, totalLembur;
         String nama, menuLembur, posisiStaff, jabatan, golongan;
         boolean exit = true, loop1 = true, loop2 = true, loop3 = true;
@@ -122,7 +124,6 @@ public class main {
 
         int g = 0;
         int s = 0;
-        login();
 
         while (exit) {
             System.out.println();
@@ -231,6 +232,7 @@ public class main {
                                                 System.out.println();
                                                 System.out.print("Masukkan Golongan Guru PNS : "); 
                                                 char menuGolongan = input.next().charAt(0);
+                                                System.out.println("---------------------------------------------------------------");
                                                 System.out.print("Masukkan Masa Kerja Guru PNS (tahun) : ");
                                                 masaKerja = input.nextInt();
                                                 input.nextLine();
