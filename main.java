@@ -122,7 +122,6 @@ public class main {
 
         int g = 0;
         int s = 0;
-        login();
 
         while (exit) {
             System.out.println();
