@@ -4,6 +4,28 @@ public class main {
 
     private static Scanner input = new Scanner(System.in);
 
+    static int[][] dataGajiPNS = {
+        {1948300, 2053100, 2139900, 2230400}, // Golongan I
+//          A        B        C         D
+        {2632400, 2830200, 2949900, 3074700}, // Golongan II
+//          A        B        C         D
+        {3305700, 3445500, 3591200, 3743100}, // Golongan III
+//          A        B        C         D
+        {3901500, 4066500, 4238500, 4417800, 4604700} // Golongan IV
+//          A        B        C         D       E
+    };
+
+    static int[][] dataTunjangan = {
+        {3605700, 3945500, 4591200, 4943100}, // Golongan I
+//          A        B        C         D
+        {5001500, 5566500, 5938500, 6417800}, // Golongan II
+//          A        B        C         D     
+        {6604700, 7023500, 7637500, 8009800}, // Golongan III
+//          A        B        C         D     
+        {8207600, 8734500, 9177500, 9712800, 10285800} // Golongan IV
+//          A        B        C         D     
+    };
+
     // Fungsi login
     static void login() {
         boolean login = true;
@@ -39,13 +61,14 @@ public class main {
     
 
     // Fungsi slip gaji PNS
-    static void slipGuru(String nama, String jabatan, int tunjangan, double gajiAkhir) {
+    static void slipGuru(String nama, String jabatan, String golongan, int tunjangan, double gajiAkhir) {
         System.out.println();
         System.out.println("+---------------------------------------------+");
         System.out.println("|              Slip Gaji Guru PNS             |");
         System.out.println("+---------------------------------------------+");
         System.out.printf("| %-20s | %-20s |\n", "Nama Guru", nama);
         System.out.printf("| %-20s | %-20s |\n", "Jabatan", jabatan);
+        System.out.printf("| %-20s | %-20s |\n", "Golongan", golongan);
         System.out.printf("| %-20s | %-20s |\n", "Tunjangan", tunjangan);
         System.out.printf("| %-20s | %-20s |\n", "Total Gaji", String.format("Rp. %,.2f", gajiAkhir));
         System.out.println("+---------------------------------------------+");
@@ -75,13 +98,13 @@ public class main {
 
     public static void main(String[] args) {
         // Variabel
-        int  tunjangan = 1000000, jamMengajar, Jamlembur, hariMasuk; 
-        double gaji, gajiAkhir, gajiLembur, totalLembur, gajiStaff = 50000;
-        String nama, menuLembur, posisiStaff, jabatan;
+        int  tunjangan, jamMengajar, Jamlembur, hariMasuk, masaKerja; 
+        double gaji, gajiAkhir, gajiLembur, totalLembur;
+        String nama, menuLembur, posisiStaff, jabatan, golongan;
         boolean exit = true, loop1 = true, loop2 = true, loop3 = true;
 
-        String daftarGuru[][] = new String[15][2];
-        double daftarGajiGuru[] = new double[15];
+        String daftarGuru[][] = new String[30][3];
+        double daftarGajiGuru[] = new double[30];
         String daftarStaff[][] = new String[15][2];
         double daftarGajiStaff[] = new double[15];
         String lapEks[][] = new String[5][3];
@@ -95,7 +118,7 @@ public class main {
         System.out.println();
         System.out.println("Selamat Datang di Sistem Penggajian Guru SMP");
         
-        // login();
+        login();
 
         int g = 0;
         int s = 0;
@@ -112,8 +135,10 @@ public class main {
             System.out.println("2. Cetak Laporan Penggajian");
             System.out.println("3. Edit Data Guru");
             System.out.println("0. Exit");
+            System.out.println("-------------------------------------");
             System.out.print("Masukkan pilihan anda : ");
             char menu = input.next().charAt(0);
+            System.out.println();
 
             switch (menu) {
                 // Case Exit
@@ -125,7 +150,6 @@ public class main {
                 case '1':
                     loop1 = true;
                     while (loop1) {
-                        System.out.println();
                         System.out.println("   ## Menu Penggajian ## ");
                         System.out.println("---------------------------");
                         System.out.println("1. Guru");
@@ -176,40 +200,272 @@ public class main {
                                         switch (jabatanGuru) {
                                             // Kepala Sekolah
                                             case '1':
-                                                System.out.print("Masukkan Nama Guru : ");
+                                                System.out.print("Masukkan Nama Kepala Sekolah : ");
                                                 nama = input.nextLine();
-                                                System.out.print("Masukkan Gaji Guru : ");
-                                                gaji = input.nextDouble();
+                                                System.out.print("Masukkan Masa Kerja Kepala Sekolah : ");
+                                                masaKerja = input.nextInt();
                                                 input.nextLine();
 
                                                 jabatan = "Kepala Sekolah";
-                                                gajiAkhir = gaji + tunjangan;
+                                                golongan = "IVe";
+                                                tunjangan = dataTunjangan[3][4];
+                                                gajiAkhir = dataGajiPNS[3][4] + tunjangan;
                                                 daftarGuru[g][0] = nama;
                                                 daftarGuru[g][1] = jabatan;
+                                                daftarGuru[g][2] = golongan;
                                                 daftarGajiGuru[g] = gajiAkhir;
                                                 g++;
 
-                                                slipGuru(nama, jabatan, tunjangan, gajiAkhir);
+                                                slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
                                                 break;
 
                                             // Guru Pengajar
                                             case '2':
                                                 System.out.print("Masukkan nama guru : ");
                                                 nama = input.nextLine();
-                                                System.out.print("Masukkan gaji guru perjam : "); 
-                                                gaji = input.nextInt();
-                                                System.out.print("Masukkan jam guru satu bulan : ");
-                                                jamMengajar = input.nextInt();
+                                                System.out.println("Golongan Guru PNS");
+                                                System.out.println("1. I\t\t\t3. III");
+                                                System.out.println("2. II\t\t\t4. IV");
+                                                System.out.println();
+                                                System.out.print("Masukkan Golongan Guru PNS : "); 
+                                                char menuGolongan = input.next().charAt(0);
+                                                System.out.print("Masukkan Masa Kerja Guru PNS (tahun) : ");
+                                                masaKerja = input.nextInt();
                                                 input.nextLine();
 
-                                                jabatan = "Guru Pengajar";
-                                                gajiAkhir = hitungGaji(gaji, jamMengajar) + tunjangan;
-                                                daftarGuru[g][0] = nama;
-                                                daftarGuru[g][1] = jabatan;
-                                                daftarGajiGuru[g] = gajiAkhir;
-                                                g++;
+                                                if (menuGolongan == '1') {
+                                                    if (masaKerja < 4) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "Ia";
+                                                        tunjangan = dataTunjangan[0][0];
+                                                        gajiAkhir = dataGajiPNS[0][0] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
 
-                                                slipGuru(nama, jabatan, tunjangan, gajiAkhir);
+                                                    } else if (masaKerja >= 4 && masaKerja < 8) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "Ib";
+                                                        tunjangan = dataTunjangan[0][1];
+                                                        gajiAkhir = dataGajiPNS[0][1] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else if (masaKerja >= 8 && masaKerja < 16) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "Ic";
+                                                        tunjangan = dataTunjangan[0][2];
+                                                        gajiAkhir = dataGajiPNS[0][2] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "Id";
+                                                        tunjangan = dataTunjangan[0][3];
+                                                        gajiAkhir = dataGajiPNS[0][3] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    }
+
+                                                } else if (menuGolongan == '2') {
+                                                    if (masaKerja < 4) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IIa";
+                                                        tunjangan = dataTunjangan[1][0];
+                                                        gajiAkhir = dataGajiPNS[1][0] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else if (masaKerja >= 4 && masaKerja < 8) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IIb";
+                                                        tunjangan = dataTunjangan[1][1];
+                                                        gajiAkhir = dataGajiPNS[1][1] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else if (masaKerja >= 8 && masaKerja < 16) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IIc";
+                                                        tunjangan = dataTunjangan[1][2];
+                                                        gajiAkhir = dataGajiPNS[1][2] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IId";
+                                                        tunjangan = dataTunjangan[1][3];
+                                                        gajiAkhir = dataGajiPNS[1][3] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    }
+
+                                                } else if (menuGolongan == '3') {
+                                                    if (masaKerja < 4) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IIIa";
+                                                        tunjangan = dataTunjangan[2][0];
+                                                        gajiAkhir = dataGajiPNS[2][0] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else if (masaKerja >= 4 && masaKerja < 8) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IIIb";
+                                                        tunjangan = dataTunjangan[2][1];
+                                                        gajiAkhir = dataGajiPNS[2][1] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else if (masaKerja >= 8 && masaKerja < 16) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IIIc";
+                                                        tunjangan = dataTunjangan[2][2];
+                                                        gajiAkhir = dataGajiPNS[2][2] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IIId";
+                                                        tunjangan = dataTunjangan[2][3];
+                                                        gajiAkhir = dataGajiPNS[2][3] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    }
+
+                                                } else if (menuGolongan == '4') {
+                                                    if (masaKerja < 4) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IVa";
+                                                        tunjangan = dataTunjangan[3][0];
+                                                        gajiAkhir = dataGajiPNS[3][0] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else if (masaKerja >= 4 && masaKerja < 8) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IVb";
+                                                        tunjangan = dataTunjangan[3][1];
+                                                        gajiAkhir = dataGajiPNS[3][1] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else if (masaKerja >= 8 && masaKerja < 16) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IVc";
+                                                        tunjangan = dataTunjangan[3][2];
+                                                        gajiAkhir = dataGajiPNS[3][2] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else if (masaKerja >= 16 && masaKerja < 20) {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IVd";
+                                                        tunjangan = dataTunjangan[3][3];
+                                                        gajiAkhir = dataGajiPNS[3][3] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    } else {
+                                                        jabatan = "Guru Pengajar";
+                                                        golongan = "IVd";
+                                                        tunjangan = dataTunjangan[3][4];
+                                                        gajiAkhir = dataGajiPNS[3][4] + tunjangan;
+                                                        daftarGuru[g][0] = nama;
+                                                        daftarGuru[g][1] = jabatan;
+                                                        daftarGuru[g][2] = golongan;
+                                                        daftarGajiGuru[g] = gajiAkhir;
+                                                        g++;
+    
+                                                        slipGuru(nama, jabatan, golongan, tunjangan, gajiAkhir);
+
+                                                    }
+                                                }
 
                                                 break;
                                         
@@ -225,7 +481,7 @@ public class main {
                                         nama = input.nextLine();
                                         System.out.print("Masukkan gaji guru perjam : "); 
                                         gaji = input.nextInt();
-                                        System.out.print("Masukkan jam guru mengajar : ");
+                                        System.out.print("Masukkan jam guru mengajar (satu bulan) : ");
                                         jamMengajar = input.nextInt();
                                         
                                         //Menu Lembur
@@ -234,25 +490,29 @@ public class main {
                                         if (menuLembur.equalsIgnoreCase("y")) {
                                             System.out.print("Masukkan gaji lembur per jam : ");
                                             gajiLembur = input.nextInt();
-                                            System.out.print ("Masukkan jam mengajar lembur : ");
+                                            System.out.print ("Masukkan jam mengajar lembur (satu bulan) : ");
                                             Jamlembur = input.nextInt();
                                             input.nextLine();
 
-                                            jabatan = "Honorer\t";
+                                            jabatan = "Honorer";
+                                            golongan = "-";
                                             totalLembur = Jamlembur * gajiLembur;
                                             gajiAkhir = hitungGaji(gaji, jamMengajar) + totalLembur;
                                             daftarGuru[g][0] = nama;
                                             daftarGuru[g][1] = jabatan;
+                                            daftarGuru[g][2] = golongan;
                                             daftarGajiGuru[g] = gajiAkhir;
                                             g++;
 
                                             slipHonorer(nama, totalLembur, gajiAkhir);
 
                                         } else if (menuLembur.equalsIgnoreCase("t")) {
-                                            jabatan = "Honorer\t";
+                                            jabatan = "Honorer";
+                                            golongan = "-";
                                             gajiAkhir = hitungGaji(gaji, jamMengajar);
                                             daftarGuru[g][0] = nama;
                                             daftarGuru[g][1] = jabatan;
+                                            daftarGuru[g][2] = golongan;
                                             daftarGajiGuru[g] = gajiAkhir;
                                             totalLembur = 0;
                                             g++;
@@ -287,11 +547,10 @@ public class main {
                                 System.out.println();
                                 System.out.print("Masukkan pilihan posisi staff : ");
                                 int menuStaff = input.nextInt();
-                                System.out.print("Masukkan hari masuk staff : ");
-                                hariMasuk = input.nextInt();;
+                                System.out.print("Masukkan gaji staff sebulan : ");
+                                gajiAkhir = input.nextInt();;
                                 input.nextLine();
 
-                                gajiAkhir = hitungGaji(gajiStaff, hariMasuk);
                                 daftarStaff[s][0] = nama;
                                 daftarGajiStaff[s] = gajiAkhir;
 
@@ -391,18 +650,18 @@ public class main {
                             // Laporan Penggajian Guru
                             case '1':
                                 System.out.println();
-                                System.out.println("======================================");
-                                System.out.println("||                                  ||");
-                                System.out.println("||      LAPORAN PENGGAJIAN GURU     ||");
-                                System.out.println("||                                  ||");
-                                System.out.println("======================================");
+                                System.out.println("\t\t======================================");
+                                System.out.println("\t\t||                                  ||");
+                                System.out.println("\t\t||      LAPORAN PENGGAJIAN GURU     ||");
+                                System.out.println("\t\t||                                  ||");
+                                System.out.println("\t\t======================================");
                                 System.out.println();
 
-                                System.out.println(String.format("%-15s %-15s %-17s %-15s", "Guru ke-", "Nama Guru", "Jabatan Guru", "Total Gaji"));
-                                System.out.println(String.format("%-15s %-15s %-17s %-15s", "-----------", "------------", "--------------", "-------------"));
+                                System.out.println(String.format("%-15s %-15s %-17s %-15s %-15s", "Guru ke-", "Nama Guru", "Jabatan Guru", "Golongan", "Total Gaji"));
+                                System.out.println(String.format("%-15s %-15s %-17s %-15s %-15s", "-----------", "------------", "--------------", "------------", "-------------"));
 
                                 for (int i = 0; i < daftarGuru.length; i++) {
-                                    System.out.println(String.format("%-15s %-15s %-17s %-15s", + (i+1), daftarGuru[i][0], daftarGuru[i][1], "Rp. " + daftarGajiGuru[i]));
+                                    System.out.println(String.format("%-15s %-15s %-17s %-15s %-15s", + (i+1), daftarGuru[i][0], daftarGuru[i][1], daftarGuru[i][2], "Rp. " + daftarGajiGuru[i]));
                                 }
                                 break;
 
@@ -481,11 +740,11 @@ public class main {
                                 System.out.println("======================================");
                                 System.out.println();
 
-                                System.out.println(String.format("%-15s %-15s %-17s %-15s", "Guru ke-", "Nama Guru", "Jabatan Guru", "Total Gaji"));
-                                System.out.println(String.format("%-15s %-15s %-17s %-15s", "-----------", "------------", "--------------", "-------------"));
+                                System.out.println(String.format("%-15s %-15s %-17s %-15s %-15s", "Guru ke-", "Nama Guru", "Jabatan Guru", "Golongan", "Total Gaji"));
+                                System.out.println(String.format("%-15s %-15s %-17s %-15s %-15s", "-----------", "------------", "--------------", "------------", "-------------"));
 
                                 for (int i = 0; i < daftarGuru.length; i++) {
-                                    System.out.println(String.format("%-15s %-15s %-17s %-15s", + (i+1), daftarGuru[i][0], daftarGuru[i][1], "Rp. " + daftarGajiGuru[i]));
+                                    System.out.println(String.format("%-15s %-15s %-17s %-15s %-15s", + (i+1), daftarGuru[i][0], daftarGuru[i][1], daftarGuru[i][2], "Rp. " + daftarGajiGuru[i]));
                                 }
                                 
                                 System.out.println();
@@ -497,6 +756,8 @@ public class main {
                                 daftarGuru[edit-1][0] = input.nextLine();
                                 System.out.print("Masukkan Jabatan Guru : ");
                                 daftarGuru[edit-1][1] = input.nextLine();
+                                System.out.print("Masukkan Golongan Guru : ");
+                                daftarGuru[edit-1][2] = input.nextLine();
                                 System.out.print("Masukkan Total Gaji Guru : ");
                                 daftarGajiGuru[edit-1] = input.nextDouble();
 
@@ -596,6 +857,36 @@ public class main {
         }    
     }
 }
+
+    // static void hitungGajiPNS(char menuGolongan, int masaKerja, String nama) {
+    //     String jabatan = "Guru Pengajar";
+    //     char golongan = '';
+    //     double tunjangan = 0;
+    //     double gajiAkhir = 0;
+
+    //     if (menuGolongan.equals("1")) {
+    //         if (masaKerja < 4) {
+    //             golongan = 'Ia';
+    //             tunjangan = dataTunjangan[0][0];
+    //         } else if (masaKerja < 8) {
+    //             golongan = 'Ib';
+    //             tunjangan = dataTunjangan[0][1];
+    //         } else if (masaKerja < 16) {
+    //             golongan = 'Ic';
+    //             tunjangan = dataTunjangan[0][2];
+    //         } else {
+    //             golongan = 'Ic';
+    //             tunjangan = dataTunjangan[0][3];
+    //         }
+
+    //         gajiAkhir = dataGajiPNS[0][golongan.charAt(0) - 'a'] + tunjangan;
+
+    //         daftarGuru[g][0] = nama;
+    //         daftarGuru[g][1] = jabatan;
+    //         daftarGuru[g][2] = golongan;
+    //         daftarGajiGuru[g] = gajiAkhir;
+    // }
+
 
 
 
